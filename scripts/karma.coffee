@@ -30,11 +30,10 @@ module.exports = (robot) ->
 
     for _match in msg.match
       match = _match.toLowerCase()
-
       username = sanitizeUsername(match)
 
       # don't let losers vote for themselves
-      if username == msg.message.user.mention_name || username == msg.message.user.name
+      if username.toLowerCase() == username == msg.message.user.name.toLowerCase()
         response = "Only losers vote for themselves"
       else if !username? || username == '' || username == ' ' || username[username.length - 1] == ' '
         # response = "Username is blank, aborting"
@@ -48,11 +47,10 @@ module.exports = (robot) ->
         score = robot.brain.data.karma[dateKey][username] += increment
         user_scores[username] = score
 
-
-    score_updates = []
-    for username, score of user_scores
-      score_updates.push "#{username} to #{score}"
-    response = "I've updated " + score_updates.join(' and ') + " for #{monthName()}"
+        score_updates = []
+        for username, score of user_scores
+          score_updates.push "#{username} to #{score}"
+        response = "I've updated " + score_updates.join(' and ') + " for #{monthName()}"
 
     if !!response
       msg.send response
