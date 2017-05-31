@@ -42,9 +42,9 @@ module.exports = (robot) ->
         # store value and respond with success
         increment = parseInt(match[match.length-1] + 1)
 
-        robot.brain.data.karma[dateKey] ?= {}
-        robot.brain.data.karma[dateKey][username] ?= 0
-        score = robot.brain.data.karma[dateKey][username] += increment
+        robot.brain.data.karma[dateKey()] ?= {}
+        robot.brain.data.karma[dateKey()][username] ?= 0
+        score = robot.brain.data.karma[dateKey()][username] += increment
         user_scores[username] = score
 
         score_updates = []
@@ -60,7 +60,7 @@ module.exports = (robot) ->
   # TODO should this be limited to, say, the top 10 users?
   robot.respond /(karma|scoreboard|leaderboard)/i, (msg) ->
     list = ''
-    scores = robot.brain.data.karma[dateKey]
+    scores = robot.brain.data.karma[dateKey()]
     sorted_users = Object.keys(scores).sort((a,b) => scores[a] - scores[b]).reverse()
 
     i = 1
