@@ -1,13 +1,24 @@
 # Description:
-#   Tell people hubot's new name if they use the old one
+#   Enables giving precious, precious karma to other users, and tracks a leaderboard that resets each month.
 #
 # Commands:
-#   @username++ - Add a karma point for said user
-#   hubot leaderboard - Show karma points for all users. Also understands "scoreboard"
+#   @username++ - Add a karma for said user
+#   @username-- - Remove karma for said user
+#   hubot karma - Show karma points for all users. You can also use "scoreboard" or leaderboard"
 #
+
+dateKey = () ->
+  date = new Date()
+  date.getFullYear() + '-' + date.getMonth()
+
+monthName = () ->
+  # month_name = date.toLocaleString('en-us', { month: "long" })
+  date = new Date()
+  month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  month_names[date.getMonth()]
+
 module.exports = (robot) ->
   robot.brain.data.karma ?= {}
-
 
   # listen for @username++ or @username-- (and now also just "username++/--")
   robot.hear /(@)?[a-z0-9]*(?:[\+]{2}|[\-]{2})/i, (msg) ->
@@ -21,11 +32,6 @@ module.exports = (robot) ->
     # strip @ symbol
     username = username.replace(/^@/,'')
 
-    # store discretely for each month
-    date = new Date()
-    date_key = date.getFullYear() + '-' + date.getMonth()
-    username_key = username + '_' + date_key
-
     # don't let losers vote for themselves
     if username == msg.message.user.mention_name || username == msg.message.user.name
       response = "Only losers vote for themselves"
@@ -33,36 +39,30 @@ module.exports = (robot) ->
       # response = "Username is blank, aborting"
       response = undefined
     else
-      # month_name = date.toLocaleString('en-us', { month: "long" })
-      month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-      month_name = month_names[date.getMonth()]
-
-      # store increment value
+      # store value and respond with success
       increment = parseInt(user[user.length-1] + 1)
-      robot.brain.data.karma[username_key] ?= 0
-      score = robot.brain.data.karma[username_key] += increment
 
-      response = "I've updated #{username} to #{score} for #{month_name}!"
+      robot.brain.data.karma[dateKey] ?= {}
+      robot.brain.data.karma[dateKey][username] ?= 0
+      score = robot.brain.data.karma[dateKey][username] += increment
+
+      response = "I've updated #{username} to #{score} for #{monthName()}!"
 
     if !!response
       msg.send response
 
 
-  # leaderboard, output as /code so we don't notify everyone everytime
-  robot.respond /(leaderboard|scoreboard)/i, (msg) ->
+  # print out the karma leaderboard for this month
+  robot.respond /(karma|scoreboard|leaderboard)/i, (msg) ->
     list = ''
-    counter = 0
-    for user of robot.brain.data.karma
-      list_item = ''
-      sanitized_user = user.replace(/^@/,'')
+    scores = robot.brain.data.karma[dateKey]
+    sorted_users = Object.keys(scores).sort((a,b) => scores[a] - scores[b]).reverse()
 
-      if counter < Object.keys(robot.brain.data.karma).length - 1
-        list_item = "#{sanitized_user}: #{robot.brain.data.karma[user]}\n"
-      else
-        list_item = "#{sanitized_user}: #{robot.brain.data.karma[user]}"
-
-      counter++
-
+    i = 1
+    for user in sorted_users
+      list_item = "##{i}. #{user}: #{scores[user]}\n"
       list = list + list_item
+      i++
 
-    msg.send "Karma:\n#{list}"
+    msg.send "*Karma leaderboard for #{monthName()}*\n#{list}"
+
