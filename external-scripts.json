@@ -3,7 +3,5 @@
   "hubot-heroku-keepalive",
   "hubot-maps",
   "hubot-redis-brain",
-
-  "hubot-reload-scripts",
-  "hubot-seen"
+  "hubot-reload-scripts"
 ]
