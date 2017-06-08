@@ -1,10 +1,19 @@
 # Description:
-#   Enables giving precious, precious karma to other users, and tracks a leaderboard that resets each month.
+#   Give precious, precious karma to other users, and tracks a leaderboard that resets each month.
+#
+# Dependencies:
+#   None
+#
+# Configuration:
+#   None
 #
 # Commands:
-#   @username++ - Add a karma for said user
+#   @username++ - Add karma for said user
 #   @username-- - Remove karma for said user
 #   hubot karma - Show karma points for all users. You can also use "scoreboard" or leaderboard"
+#
+# Author:
+#   @jamiew
 #
 
 dateKey = () ->
