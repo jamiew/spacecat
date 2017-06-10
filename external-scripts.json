@@ -1,7 +1,6 @@
 [
   "hubot-help",
   "hubot-heroku-keepalive",
-  "hubot-maps",
   "hubot-redis-brain",
   "hubot-reload-scripts"
 ]

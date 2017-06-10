@@ -9,7 +9,6 @@
 #
 # Commands:
 #   hubot define <term>     - Searches Urban Dictionary and returns definition
-#   hubot urban me <term>   - Searches Urban Dictionary and returns definition
 #
 # Author:
 #   Travis Jeffery (@travisjeffery)
