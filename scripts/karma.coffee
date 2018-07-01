@@ -15,6 +15,9 @@
 # Author:
 #   @jamiew
 #
+# Author:
+#   @jamiew
+#
 
 dateKey = () ->
   date = new Date()
