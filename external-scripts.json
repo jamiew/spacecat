@@ -3,5 +3,6 @@
   "hubot-heroku-keepalive",
   "hubot-redis-brain",
   "hubot-brain-inspect",
-  "hubot-reload-scripts"
+  "hubot-reload-scripts",
+  "hubot-ipfs"
 ]
