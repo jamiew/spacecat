@@ -21,7 +21,7 @@
     "hubot-seen": "^1.0.1",
     "hubot-shipit": "^0.2.0",
     "hubot-slack": "^4.3.4",
-    "hubot-ipfs": "github:jamiew/hubot-ipfs"
+    "hubot-ipfs": "file:~/dev/hubot-ipfs"
   },
   "engines": {
     "node": "8.1"
