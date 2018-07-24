@@ -1,19 +1,19 @@
 ![Our noble hero](http://i0.kym-cdn.com/entries/icons/facebook/000/003/458/space_arp.jpg "What you see when you die")
 
-*Spacecat* is a [Hubot][hubot]-based Slack bot used by the teams at @vhxtv and @Vimeo.
+**Spacecat** is a [Hubot](https://hubot.github.com/)-based Slack bot used by the teams at @vhxtv, @vimeo and @kickstarter
 
-## Scripts
+## Active Scripts
 
 * `karma` script -- "username++"/"username--" and "spacecat leaderboard"
 * `stock` script -- "spacecat stock TSLA"
 * `urban` script -- "spacecat define capitalism"
 * `dice` script -- "spacecat roll 1d20"
 * "developer excuse", "designer excuse"
-* deal with it
-* it's a trap
-* [hubot-ipfs](https://github.com/jamiew/hubot-ipfs) -- "pin QmIPFSHASH", "ipfs help" for all commands
+* "deal with it"
+* "it's a trap"
+* [hubot-ipfs](https://github.com/jamiew/hubot-ipfs) -- "pin QmIPFSHASH..."; "ipfs help" for all commands
 
-It used to do other things but now it does fewer things
+It used to do other things, but now it does fewer things
 
 ## Configuration
 
