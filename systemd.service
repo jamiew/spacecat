@@ -1,0 +1,26 @@
+; Place in e.g. `/etc/systemd/system/spacecat.service`, then `systemctl daemon-reload` and `service spacecat start`.
+
+[Unit]
+Description=Spacecat
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/spacecat
+User=change-to-spacecat-user
+
+Restart=always
+RestartSec=10
+
+; Configure Hubot environment variables, use quotes around vars with whitespace as shown below.
+Environment="HUBOT_aaa=xxx"
+Environment="HUBOT_bbb='yyy yyy'"
+
+; Alternatively multiple environment variables can loaded from an external file
+;EnvironmentFile=/etc/spacecat-environment
+
+ExecStart=/path/to/hubot/bin/hubot --adapter zzz
+
+[Install]
+WantedBy=multi-user.target
