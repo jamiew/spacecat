@@ -1,7 +1,7 @@
 [
-  "hubot-help",
-  "hubot-redis-brain",
   "hubot-brain-inspect",
-  "hubot-reload-scripts",
-  "hubot-ipfs"
+  "hubot-help",
+  "hubot-ipfs",
+  "hubot-redis-brain",
+  "hubot-reload-scripts"
 ]
