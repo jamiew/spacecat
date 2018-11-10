@@ -47,7 +47,7 @@ module.exports = (robot) ->
       # don't let losers vote for themselves
       if username.toLowerCase() == username == msg.message.user.name.toLowerCase()
         response = "Only losers vote for themselves"
-      else if !username? || username == '' || username == ' ' || username[username.length - 1] == ' '
+      else if !username? || username == '' || username == ' ' || username[username.length - 1] == ' ' || username.toLowerCase() == 'c'
         # response = "Username is blank, aborting"
         response = undefined
       else
