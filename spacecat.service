@@ -1,0 +1,29 @@
+# systemd startup script
+#
+# systemctl --user link spacecat.service
+# systemctl --user start spacecat
+#
+# To start at boot, enable lingering for that user account:
+# sudo loginctl enable-linger $(whoami)
+# systemctl --user enable spacecat
+
+[Unit]
+Description=Spacecat, a Hubot-based Slack bot
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/spacecat/spacecat
+Restart=always
+RestartSec=10
+ExecStart=/home/spacecat/spacecat/bin/hubot --adapter slack
+
+# Configure Hubot environment variables, use quotes around vars with whitespace as shown below.
+#Environment="HUBOT_SLACK_TOKEN=$(cat /home/spacecat/spacecat/token)"
+#Environment="HUBOT_BBB='yyy yyy'"
+
+# Alternatively multiple environment variables can loaded from an external file
+EnvironmentFile=/home/spacecat/spacecat/environment
+
+[Install]
+WantedBy=default.target
