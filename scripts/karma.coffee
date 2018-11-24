@@ -36,7 +36,7 @@ module.exports = (robot) ->
   robot.brain.data.karma ?= {}
 
   # listen for @username++ or @username-- (and now also just "username++/--")
-  robot.hear /(@)?[a-z0-9]*(?:[\+]{2}|[\-]{2})/ig, (msg) ->
+  robot.hear /(@)?[a-z0-9]*(?:[\+]{2}|[\-]{2})\B/ig, (msg) ->
 
     user_scores = {}
 
