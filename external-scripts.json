@@ -2,6 +2,5 @@
   "hubot-brain-inspect",
   "hubot-help",
   "hubot-ipfs",
-  "hubot-redis-brain",
-  "hubot-reload-scripts"
+  "hubot-redis-brain"
 ]
